@@ -3,6 +3,7 @@ package com.jzxiang.pickerview;
 import android.content.Context;
 import android.view.View;
 
+import com.jzxiang.pickerview.adapters.MinuteWheelAdapter;
 import com.jzxiang.pickerview.adapters.NumericWheelAdapter;
 import com.jzxiang.pickerview.config.PickerConfig;
 import com.jzxiang.pickerview.data.source.TimeRepository;
@@ -233,7 +234,7 @@ public class TimeWheel {
         int minMinute = mRepository.getMinMinute(curYear, curMonth, curDay, curHour);
         int maxMinute = mRepository.getMaxMinute(curYear, curMonth, curDay, curHour);
 
-        mMinuteAdapter = new NumericWheelAdapter(mContext, minMinute, maxMinute, PickerContants.FORMAT, mPickerConfig.mMinute);
+        mMinuteAdapter = new MinuteWheelAdapter(mContext, minMinute, maxMinute, PickerContants.FORMAT, mPickerConfig.mMinute, mPickerConfig.mMinuteInterval);
         mMinuteAdapter.setConfig(mPickerConfig);
         minute.setViewAdapter(mMinuteAdapter);
 

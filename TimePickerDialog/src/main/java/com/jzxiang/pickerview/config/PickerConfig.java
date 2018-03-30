@@ -45,4 +45,9 @@ public class PickerConfig {
     public WheelCalendar mCurrentCalendar = new WheelCalendar(System.currentTimeMillis());
 
     public OnDateSetListener mCallBack;
+
+    /**
+     * The minute interval
+     */
+    public int mMinuteInterval = 1;
 }

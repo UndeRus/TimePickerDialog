@@ -235,6 +235,11 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
+        public Builder setMinuteInterval(int minuteInterval) {
+            mPickerConfig.mMinuteInterval = minuteInterval;
+            return this;
+        }
+
         public TimePickerDialog build() {
             return newIntance(mPickerConfig);
         }
