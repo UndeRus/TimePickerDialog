@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setWheelItemTextNormalColor(getResources().getColor(R.color.timetimepicker_default_text_color))
                 .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(12)
-                .setMinuteInterval(5)
+                .setMinuteInterval(15)
                 .setShowMonthName(true)
                 .build();
 
