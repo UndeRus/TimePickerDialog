@@ -50,4 +50,9 @@ public class PickerConfig {
      * The minute interval
      */
     public int mMinuteInterval = 1;
+
+    /**
+     * The month text
+     */
+    public boolean mShowMonthName = false;
 }

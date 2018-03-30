@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.jzxiang.pickerview.adapters.MinuteWheelAdapter;
+import com.jzxiang.pickerview.adapters.MonthNameWheelAdapter;
 import com.jzxiang.pickerview.adapters.NumericWheelAdapter;
 import com.jzxiang.pickerview.config.PickerConfig;
 import com.jzxiang.pickerview.data.source.TimeRepository;
@@ -167,7 +168,9 @@ public class TimeWheel {
         int curYear = getCurrentYear();
         int minMonth = mRepository.getMinMonth(curYear);
         int maxMonth = mRepository.getMaxMonth(curYear);
-        mMonthAdapter = new NumericWheelAdapter(mContext, minMonth, maxMonth, PickerContants.FORMAT, mPickerConfig.mMonth);
+        mMonthAdapter = mPickerConfig.mShowMonthName
+                ? new MonthNameWheelAdapter(mContext, minMonth, maxMonth)
+                : new NumericWheelAdapter(mContext, minMonth, maxMonth, PickerContants.FORMAT, mPickerConfig.mMonth);
         mMonthAdapter.setConfig(mPickerConfig);
         month.setViewAdapter(mMonthAdapter);
 

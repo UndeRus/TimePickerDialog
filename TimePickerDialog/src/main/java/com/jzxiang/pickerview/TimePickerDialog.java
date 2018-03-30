@@ -240,6 +240,11 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
+        public Builder setShowMonthName(boolean show) {
+            mPickerConfig.mShowMonthName = show;
+            return this;
+        }
+
         public TimePickerDialog build() {
             return newIntance(mPickerConfig);
         }
