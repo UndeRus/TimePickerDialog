@@ -25,7 +25,16 @@ public class MonthNameWheelAdapter extends NumericWheelAdapter {
 
     @Override
     public CharSequence getItemText(int index) {
-        return monthArray[index];
+        if (index >= 0 && index < getItemsCount()) {
+            int value = minValue + index;
+            return monthArray[value-1];
+        }
+        return null;
+    }
+
+    @Override
+    public int getItemsCount() {
+        return maxValue - minValue + 1;
     }
 
 }
