@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jzxiang.pickerview.config.PickerConfig;
 import com.jzxiang.pickerview.data.Type;
@@ -20,6 +21,7 @@ import com.jzxiang.pickerview.data.WheelCalendar;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by jzxiang on 16/4/19.
@@ -126,11 +128,30 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         calendar.set(Calendar.HOUR_OF_DAY, mTimeWheel.getCurrentHour());
         calendar.set(Calendar.MINUTE, mTimeWheel.getCurrentMinute());
 
+        int selectedYear = calendar.get(Calendar.YEAR);
+        int selectedMonth = calendar.get(Calendar.MONTH) + 1;
+        int selectedDay = calendar.get(Calendar.DAY_OF_MONTH);
+
         mCurrentMillSeconds = calendar.getTimeInMillis();
-        if (mPickerConfig.mCallBack != null) {
-            mPickerConfig.mCallBack.onDateSet(this, mCurrentMillSeconds);
+        boolean selectedDisableDate = false;
+        for (Calendar disableCalendar : mPickerConfig.mDisabledDates) {
+            int disabledYear = disableCalendar.get(Calendar.YEAR);
+            int disabledMonth = disableCalendar.get(Calendar.MONTH);
+            int disabledDay = disableCalendar.get(Calendar.DAY_OF_MONTH);
+
+            if (selectedYear == disabledYear && selectedMonth == disabledMonth && selectedDay == disabledDay) {
+                selectedDisableDate = true;
+                break;
+            }
         }
-        dismiss();
+        if (selectedDisableDate) {
+            Toast.makeText(getActivity(), mPickerConfig.mDisabledDateSelectedErrorText, Toast.LENGTH_SHORT).show();
+        } else {
+            if (mPickerConfig.mCallBack != null) {
+                mPickerConfig.mCallBack.onDateSet(this, mCurrentMillSeconds);
+            }
+            dismiss();
+        }
     }
 
     public static class Builder {
@@ -242,6 +263,16 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
 
         public Builder setShowMonthName(boolean show) {
             mPickerConfig.mShowMonthName = show;
+            return this;
+        }
+
+        public Builder setDisabledDates(List<Calendar> disableDates) {
+            mPickerConfig.mDisabledDates = disableDates;
+            return this;
+        }
+
+        public Builder setDisabledDateSelectedText(String disabledDateSelectedText) {
+            mPickerConfig.mDisabledDateSelectedErrorText = disabledDateSelectedText;
             return this;
         }
 

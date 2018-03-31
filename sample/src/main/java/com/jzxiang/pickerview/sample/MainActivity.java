@@ -10,7 +10,10 @@ import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnDateSetListener {
     TimePickerDialog mDialogAll;
@@ -28,6 +31,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
         long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
+
+        List<Calendar> disableDates = new ArrayList<>();
+        Calendar disabledDate1 = Calendar.getInstance();
+        Calendar disabledDate2 = Calendar.getInstance();
+        Calendar disabledDate3 = Calendar.getInstance();
+        disabledDate1.add(Calendar.DATE, 1);
+        disabledDate1.add(Calendar.MONTH, 1);
+        disabledDate2.add(Calendar.DATE, 3);
+        disabledDate2.add(Calendar.MONTH, 1);
+        disabledDate3.add(Calendar.DATE, 5);
+        disabledDate3.add(Calendar.MONTH, 1);
+        disableDates.add(disabledDate1);
+        disableDates.add(disabledDate2);
+        disableDates.add(disabledDate3);
+
         mDialogAll = new TimePickerDialog.Builder()
                 .setCallBack(this)
                 .setCancelStringId("Cancel")
@@ -49,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setWheelItemTextSize(12)
                 .setMinuteInterval(15)
                 .setShowMonthName(true)
+                .setDisabledDates(disableDates)
+                .setDisabledDateSelectedText("This date is not valid")
                 .build();
 
 //        mDialogAll = new TimePickerDialog.Builder()

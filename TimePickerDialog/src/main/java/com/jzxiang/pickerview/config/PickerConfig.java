@@ -4,6 +4,10 @@ import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.data.WheelCalendar;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 
 /**
  * Created by jzxiang on 16/5/15.
@@ -55,4 +59,14 @@ public class PickerConfig {
      * The month text
      */
     public boolean mShowMonthName = false;
+
+    /**
+     * The disabled dates
+     */
+    public List<Calendar> mDisabledDates = new ArrayList<>();
+
+    /**
+     * The disabled date selected text
+     */
+    public String mDisabledDateSelectedErrorText = "This date is disabled";
 }

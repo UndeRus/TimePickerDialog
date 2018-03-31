@@ -19,6 +19,8 @@ package com.jzxiang.pickerview.adapters;
 import android.content.Context;
 import android.text.TextUtils;
 
+import java.util.Calendar;
+
 /**
  * Numeric Wheel adapter.
  */
