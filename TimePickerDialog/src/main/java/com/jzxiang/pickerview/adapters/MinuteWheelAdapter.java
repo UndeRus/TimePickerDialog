@@ -23,7 +23,8 @@ public class MinuteWheelAdapter extends NumericWheelAdapter {
         super(context, minValue, maxValue, format, unit);
         this.minuteInterval = minuteInterval;
         this.minValue = Math.round(((float) minValue / (float) minuteInterval)) * minuteInterval;
-        this.maxValue = maxValue == 59 ? 59 : Math.round(((float) maxValue / (float) minuteInterval)) * minuteInterval;
+        this.maxValue = Math.round(((float) maxValue / (float) minuteInterval)) * minuteInterval;
+        this.maxValue = this.maxValue == 60 ? this.maxValue - minuteInterval : this.maxValue;
     }
 
     @Override
