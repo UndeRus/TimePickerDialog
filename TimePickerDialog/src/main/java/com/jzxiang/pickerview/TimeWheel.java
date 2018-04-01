@@ -305,7 +305,33 @@ public class TimeWheel {
         int curDay = getCurrentDay();
         int curHour = getCurrentHour();
 
-        return minute.getCurrentItem() + mRepository.getMinMinute(curYear, curMonth, curDay, curHour);
+        int currentItem = minute.getCurrentItem();
+        int minMinute = mRepository.getMinMinute(curYear, curMonth, curDay, curHour);
+
+        int minuteInterval = mPickerConfig.mMinuteInterval;
+
+        Calendar currentCalendar = Calendar.getInstance();
+        int calYear = currentCalendar.get(Calendar.YEAR);
+        int calMonth = currentCalendar.get(Calendar.MONTH) + 1;
+        int calDay = currentCalendar.get(Calendar.DAY_OF_MONTH);
+        int calHour = currentCalendar.get(Calendar.HOUR_OF_DAY);
+
+        // For current date
+        if (calYear == curYear &&
+            calMonth == curMonth &&
+            calDay == curDay &&
+            calHour == curHour) {
+            minMinute = Math.round(((float) minMinute / (float) minuteInterval)) * minuteInterval;
+            currentItem = currentItem + minMinute / minuteInterval;
+            return currentItem * minuteInterval;
+        }
+
+        // For future date
+        if (minMinute == 0 && currentItem == 0) {
+            return 0;
+        } else {
+            return currentItem * minuteInterval;
+        }
     }
 
 
