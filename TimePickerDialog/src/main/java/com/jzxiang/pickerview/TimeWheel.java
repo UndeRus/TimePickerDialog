@@ -1,6 +1,7 @@
 package com.jzxiang.pickerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.jzxiang.pickerview.adapters.DateWheelAdapter;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 public class TimeWheel {
     Context mContext;
+
+    public static boolean sDisabled;
 
     WheelView year, month, day, hour, minute;
     NumericWheelAdapter mYearAdapter, mMonthAdapter, mDayAdapter, mHourAdapter, mMinuteAdapter;
@@ -189,23 +192,16 @@ public class TimeWheel {
 
         int curYear = getCurrentYear();
         int curMonth = getCurrentMonth();
-        int curDay = getCurrentDay();
-        int curHour = getCurrentHour();
 
         int maxDay = mRepository.getMaxDay(curYear, curMonth);
         int minDay = mRepository.getMinDay(curYear, curMonth);
 
-        Calendar currentCalendar = Calendar.getInstance();
-        currentCalendar.set(Calendar.YEAR, curYear);
-        currentCalendar.set(Calendar.MONTH, curMonth);
-        currentCalendar.set(Calendar.DAY_OF_MONTH, curDay);
-        currentCalendar.set(Calendar.HOUR_OF_DAY, curHour);
 
         List<Integer> disableDates = new ArrayList<>();
 
         for (Calendar date : mPickerConfig.mDisabledDates) {
             int disableDateYear = date.get(Calendar.YEAR);
-            int disableDateMonth = date.get(Calendar.MONTH);
+            int disableDateMonth = date.get(Calendar.MONTH) + 1;
             if (curMonth == disableDateMonth && curYear == disableDateYear) {
                 disableDates.add(date.get(Calendar.DAY_OF_MONTH));
             }
@@ -232,18 +228,25 @@ public class TimeWheel {
         int curYear = getCurrentYear();
         int curMonth = getCurrentMonth();
         int curDay = getCurrentDay();
-        int curHour = getCurrentHour();
 
         int minHour = mRepository.getMinHour(curYear, curMonth, curDay);
         int maxHour = mRepository.getMaxHour(curYear, curMonth, curDay);
 
-        Calendar currentCalendar = Calendar.getInstance();
-        currentCalendar.set(Calendar.YEAR, curYear);
-        currentCalendar.set(Calendar.MONTH, curMonth);
-        currentCalendar.set(Calendar.DAY_OF_MONTH, curDay);
-        currentCalendar.set(Calendar.HOUR_OF_DAY, curHour);
+        for (Calendar date : mPickerConfig.mDisabledDates) {
+            int disableDateYear = date.get(Calendar.YEAR);
+            int disableDateMonth = date.get(Calendar.MONTH) + 1;
+            int disableDateDay = date.get(Calendar.DAY_OF_MONTH);
+            if (curMonth == disableDateMonth && curYear == disableDateYear && curDay == disableDateDay) {
+                sDisabled = true;
+                Log.d("DISABLED", sDisabled + "");
+                break;
+            } else {
+                sDisabled = false;
+                Log.d("DISABLED", sDisabled + "");
+            }
+        }
 
-        mHourAdapter = new NumericWheelAdapterWIthDisabled(mContext, minHour, maxHour, PickerContants.FORMAT, mPickerConfig.mHour, currentCalendar, mPickerConfig.mDisabledDates);
+        mHourAdapter = new NumericWheelAdapterWIthDisabled(mContext, minHour, maxHour, PickerContants.FORMAT, mPickerConfig.mHour);
         mHourAdapter.setConfig(mPickerConfig);
         hour.setViewAdapter(mHourAdapter);
 
@@ -263,13 +266,8 @@ public class TimeWheel {
         int minMinute = mRepository.getMinMinute(curYear, curMonth, curDay, curHour);
         int maxMinute = mRepository.getMaxMinute(curYear, curMonth, curDay, curHour);
 
-        Calendar currentCalendar = Calendar.getInstance();
-        currentCalendar.set(Calendar.YEAR, curYear);
-        currentCalendar.set(Calendar.MONTH, curMonth);
-        currentCalendar.set(Calendar.DAY_OF_MONTH, curDay);
-        currentCalendar.set(Calendar.HOUR_OF_DAY, curHour);
 
-        mMinuteAdapter = new MinuteWheelAdapter(mContext, minMinute, maxMinute, PickerContants.FORMAT, mPickerConfig.mMinute, mPickerConfig.mMinuteInterval, currentCalendar, mPickerConfig.mDisabledDates);
+        mMinuteAdapter = new MinuteWheelAdapter(mContext, minMinute, maxMinute, PickerContants.FORMAT, mPickerConfig.mMinute, mPickerConfig.mMinuteInterval);
         mMinuteAdapter.setConfig(mPickerConfig);
         minute.setViewAdapter(mMinuteAdapter);
 

@@ -136,7 +136,7 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         boolean selectedDisableDate = false;
         for (Calendar disableCalendar : mPickerConfig.mDisabledDates) {
             int disabledYear = disableCalendar.get(Calendar.YEAR);
-            int disabledMonth = disableCalendar.get(Calendar.MONTH);
+            int disabledMonth = disableCalendar.get(Calendar.MONTH) + 1;
             int disabledDay = disableCalendar.get(Calendar.DAY_OF_MONTH);
 
             if (selectedYear == disabledYear && selectedMonth == disabledMonth && selectedDay == disabledDay) {

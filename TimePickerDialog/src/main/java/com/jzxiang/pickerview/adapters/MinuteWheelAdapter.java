@@ -7,9 +7,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 
-import java.util.Calendar;
-import java.util.List;
-
 /**
  * Created by Dmitry Uspensky on 30.03.18.
  */
@@ -26,8 +23,8 @@ public class MinuteWheelAdapter extends NumericWheelAdapterWIthDisabled {
      * @param format         the format string
      * @param unit           the wheel unit value
      */
-    public MinuteWheelAdapter(Context context, int minValue, int maxValue, String format, String unit, int minuteInterval, Calendar currentCalendar, List<Calendar> disabledDates) {
-        super(context, minValue, maxValue, format, unit, currentCalendar, disabledDates);
+    public MinuteWheelAdapter(Context context, int minValue, int maxValue, String format, String unit, int minuteInterval) {
+        super(context, minValue, maxValue, format, unit);
         this.minuteInterval = minuteInterval;
         this.minValue = Math.round(((float) minValue / (float) minuteInterval)) * minuteInterval;
         this.maxValue = Math.round(((float) maxValue / (float) minuteInterval)) * minuteInterval;

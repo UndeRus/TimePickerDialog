@@ -6,6 +6,8 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 
+import com.jzxiang.pickerview.TimeWheel;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,28 +16,13 @@ import java.util.List;
  */
 public class NumericWheelAdapterWIthDisabled extends NumericWheelAdapter {
 
-    private Calendar currentCalendar;
-    private List<Calendar> disabledDates;
 
-    public NumericWheelAdapterWIthDisabled(Context context, int minValue, int maxValue, String format, String unit, Calendar currentCalendar, List<Calendar> disabledDates) {
+    public NumericWheelAdapterWIthDisabled(Context context, int minValue, int maxValue, String format, String unit) {
         super(context, minValue, maxValue, format, unit);
-        this.currentCalendar = currentCalendar;
-        this.disabledDates = disabledDates;
     }
 
     protected boolean isItemDisable() {
-        for (Calendar disabledDate : disabledDates) {
-            int disableYear = disabledDate.get(Calendar.YEAR);
-            int disableMonth = disabledDate.get(Calendar.MONTH);
-            int disableDate = disabledDate.get(Calendar.DAY_OF_MONTH);
-            int currentYear = currentCalendar.get(Calendar.YEAR);
-            int currentMonth = currentCalendar.get(Calendar.MONTH);
-            int currentDate = currentCalendar.get(Calendar.DAY_OF_MONTH);
-            if (disableYear == currentYear && currentMonth == disableMonth && currentDate == disableDate) {
-                return true;
-            }
-        }
-        return false;
+        return TimeWheel.sDisabled;
     }
 
     @Override
