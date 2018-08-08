@@ -238,11 +238,9 @@ public class TimeWheel {
             int disableDateDay = date.get(Calendar.DAY_OF_MONTH);
             if (curMonth == disableDateMonth && curYear == disableDateYear && curDay == disableDateDay) {
                 sDisabled = true;
-                Log.d("DISABLED", sDisabled + "");
                 break;
             } else {
                 sDisabled = false;
-                Log.d("DISABLED", sDisabled + "");
             }
         }
 

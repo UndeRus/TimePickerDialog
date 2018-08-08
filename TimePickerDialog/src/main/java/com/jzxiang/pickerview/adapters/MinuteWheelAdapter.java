@@ -40,6 +40,8 @@ public class MinuteWheelAdapter extends NumericWheelAdapterWIthDisabled {
             Spannable spannable = new SpannableString(text);
             if (isItemDisable()) {
                 spannable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                spannable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
             return spannable;
         }

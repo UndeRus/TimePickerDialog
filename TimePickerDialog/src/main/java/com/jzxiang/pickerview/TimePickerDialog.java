@@ -96,6 +96,9 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         rightMargin.setLayoutParams(new LinearLayout.LayoutParams(mPickerConfig.mRightMargin,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
 
+        leftMargin.setOnClickListener(this);
+        rightMargin.setOnClickListener(this);
+
         mTimeWheel = new TimeWheel(view, mPickerConfig);
         return view;
     }
@@ -103,7 +106,7 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.tv_cancel) {
+        if (i == R.id.tv_cancel || i == R.id.left_empty_view || i == R.id.right_empty_view) {
             dismiss();
         } else if (i == R.id.tv_sure) {
             sureClicked();
