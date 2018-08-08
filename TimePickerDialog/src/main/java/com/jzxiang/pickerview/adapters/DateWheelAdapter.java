@@ -32,8 +32,6 @@ public class DateWheelAdapter extends NumericWheelAdapter {
             Spannable spannable = new SpannableString(text);
             if (disabledDates.contains(value)) {
                 spannable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else {
-                spannable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
 
             return spannable;

@@ -232,6 +232,8 @@ public class TimeWheel {
         int minHour = mRepository.getMinHour(curYear, curMonth, curDay);
         int maxHour = mRepository.getMaxHour(curYear, curMonth, curDay);
 
+        sDisabled = false;
+
         for (Calendar date : mPickerConfig.mDisabledDates) {
             int disableDateYear = date.get(Calendar.YEAR);
             int disableDateMonth = date.get(Calendar.MONTH) + 1;
