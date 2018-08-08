@@ -23,6 +23,8 @@ public class DefaultConfig {
     public static String MINUTE = "分";
     public static Integer LEFT_MARGIN = 0;
     public static Integer RIGHT_MARGIN = 0;
+    public static String CURRENT_DATE_CAPTION = "today";
+    public static String NEXT_DAY_CAPTION = "tomorrow";
 
 
 }

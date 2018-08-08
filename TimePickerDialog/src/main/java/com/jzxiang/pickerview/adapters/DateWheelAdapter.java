@@ -26,14 +26,26 @@ public class DateWheelAdapter extends NumericWheelAdapter {
         if (index >= 0 && index < getItemsCount()) {
             int value = minValue + index;
 
-            String text = !TextUtils.isEmpty(format) ? String.format(format, value) : Integer.toString(value);
-            text = TextUtils.isEmpty(unit) ? text : text + unit;
+            String currentDateCaption = getConfig().mCurrentDateCaption;
+            String nextDateCaption = getConfig().mNextDateCaption;
+
+            String text = "";
+
+            if (!TextUtils.isEmpty(currentDateCaption) && !TextUtils.isEmpty(nextDateCaption) && (minValue + 1 == maxValue)) {
+                if (value == minValue) {
+                    text = currentDateCaption;
+                } else if (value == maxValue) {
+                    text = nextDateCaption;
+                }
+            } else {
+                text = !TextUtils.isEmpty(format) ? String.format(format, value) : Integer.toString(value);
+                text = TextUtils.isEmpty(unit) ? text : text + unit;
+            }
 
             Spannable spannable = new SpannableString(text);
             if (disabledDates.contains(value)) {
                 spannable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
-
             return spannable;
         }
         return null;

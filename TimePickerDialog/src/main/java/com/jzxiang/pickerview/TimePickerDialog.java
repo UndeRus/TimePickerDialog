@@ -299,6 +299,16 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
+        public Builder setCurrentDateCaption(String caption) {
+            mPickerConfig.mCurrentDateCaption = caption;
+            return this;
+        }
+
+        public Builder setNextDateCaption(String caption) {
+            mPickerConfig.mNextDateCaption = caption;
+            return this;
+        }
+
         public TimePickerDialog build() {
             return newIntance(mPickerConfig);
         }

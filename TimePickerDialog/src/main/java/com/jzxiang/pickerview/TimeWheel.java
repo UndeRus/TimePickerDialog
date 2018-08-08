@@ -90,6 +90,9 @@ public class TimeWheel {
             case YEAR_MONTH_DAY:
                 Utils.hideViews(hour, minute);
                 break;
+            case DAY_HOURS_MINS:
+                Utils.hideViews(year, month);
+                break;
             case YEAR_MONTH:
                 Utils.hideViews(day, hour, minute);
                 break;

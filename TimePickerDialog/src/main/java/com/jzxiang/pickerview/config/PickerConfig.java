@@ -36,6 +36,9 @@ public class PickerConfig {
     public Integer mLeftMargin = DefaultConfig.LEFT_MARGIN;
     public Integer mRightMargin = DefaultConfig.RIGHT_MARGIN;
 
+    public String mCurrentDateCaption = DefaultConfig.CURRENT_DATE_CAPTION;
+    public String mNextDateCaption = DefaultConfig.NEXT_DAY_CAPTION;
+
     /**
      * The min timeMillseconds
      */
