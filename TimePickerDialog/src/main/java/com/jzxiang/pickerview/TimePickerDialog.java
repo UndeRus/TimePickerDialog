@@ -2,10 +2,13 @@ package com.jzxiang.pickerview;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -281,6 +284,15 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
 
         public Builder setDisabledDateSelectedText(String disabledDateSelectedText) {
             mPickerConfig.mDisabledDateSelectedErrorText = disabledDateSelectedText;
+            return this;
+        }
+
+        public Builder setLeftRightMargins(Context context, int leftDp, int rightDp) {
+            Resources r = context.getResources();
+            float pxLeft = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, leftDp, r.getDisplayMetrics());
+            float pxRight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rightDp, r.getDisplayMetrics());
+            mPickerConfig.mLeftMargin = Math.round(pxLeft);
+            mPickerConfig.mRightMargin = Math.round(pxRight);
             return this;
         }
 
