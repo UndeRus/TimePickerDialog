@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,11 +80,18 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         sure.setOnClickListener(this);
         TextView title = (TextView) view.findViewById(R.id.tv_title);
         View toolbar = view.findViewById(R.id.toolbar);
+        View leftMargin = view.findViewById(R.id.left_empty_view);
+        View rightMargin = view.findViewById(R.id.right_empty_view);
 
         title.setText(mPickerConfig.mTitleString);
         cancel.setText(mPickerConfig.mCancelString);
         sure.setText(mPickerConfig.mSureString);
         toolbar.setBackgroundColor(mPickerConfig.mThemeColor);
+
+        leftMargin.setLayoutParams(new LinearLayout.LayoutParams(mPickerConfig.mLeftMargin,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        rightMargin.setLayoutParams(new LinearLayout.LayoutParams(mPickerConfig.mRightMargin,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
 
         mTimeWheel = new TimeWheel(view, mPickerConfig);
         return view;

@@ -33,6 +33,9 @@ public class PickerConfig {
     public String mHour = DefaultConfig.HOUR;
     public String mMinute = DefaultConfig.MINUTE;
 
+    public Integer mLeftMargin = DefaultConfig.LEFT_MARGIN;
+    public Integer mRightMargin = DefaultConfig.RIGHT_MARGIN;
+
     /**
      * The min timeMillseconds
      */
