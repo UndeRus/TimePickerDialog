@@ -274,7 +274,7 @@ public class TimeWheel {
         mMinuteAdapter.setConfig(mPickerConfig);
         minute.setViewAdapter(mMinuteAdapter);
 
-        if (mRepository.isMinHour(curYear, curMonth, curDay, curHour))
+        if (mRepository.isMinHour(curYear, curMonth, curDay, curHour) || mMinuteAdapter.getItemsCount() == 1)
             minute.setCurrentItem(0, false);
     }
 

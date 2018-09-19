@@ -1,6 +1,7 @@
 package com.jzxiang.pickerview.sample;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -67,10 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setWheelItemTextNormalColor(getResources().getColor(R.color.timetimepicker_default_text_color))
                 .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(12)
-                .setMinuteInterval(15)
+                .setMinuteInterval(30)
                 .setShowMonthName(true)
                 .setDisabledDates(disableDates)
                 .setDisabledDateSelectedText("This date is not valid")
+                .setMaxMillseconds(System.currentTimeMillis() + 24*60*60*1000)
                 .build();
 
 //        mDialogAll = new TimePickerDialog.Builder()
